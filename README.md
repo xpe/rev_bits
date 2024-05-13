@@ -1,6 +1,6 @@
 # rev_bits
 
-A Rust library for reversing bits for a specified range of an integer.
+A Rust library for reversing bits for a specified range of an integer (`u32` or `u64`).
 
 ## Example
 
@@ -49,7 +49,3 @@ cargo bench
 ```
 
 [Criterion.rs]: https://github.com/bheisler/criterion.rs
-
-## Limitations
-
-Note: the library currently only supports `u32`.
