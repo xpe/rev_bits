@@ -18,14 +18,13 @@ pub fn reverse(input: u64, range: impl RangeBounds<u32>) -> u64 {
     }
 }
 
-/// Returns the input where bits in the closed interval [min_idx, max_idx]
-/// are reversed.
+/// Returns the input with bits in the closed interval [min, max] reversed.
 ///
 /// For example:
 ///     `abcdefghiABCDEFjkmlmnopqrtuvwxyz`
 /// becomes
 ///     `abcdefghiFEDCBAjklmnopqrstuvwxyz`
-/// for min_idx=16, max_idx=23
+/// for min=16, max=23
 fn reverse_closed_interval(input: u64, min: u32, max: u32) -> u64 {
     // The comments use the following input as an example:
     //     abcdefghiABCDEFjkmlmnopqrtuvwxyz
@@ -46,7 +45,7 @@ fn reverse_closed_interval(input: u64, min: u32, max: u32) -> u64 {
     //            length = 6
     let length = max + 1 - min;
 
-    // Create a ones mask for the [min_idx, max_idx] interval.
+    // Create a ones mask for the [min, max] interval.
     //     11111111111111111111111111111111
     //     111111<-------------------------
     //                   BITS-length = 32-6=26
@@ -63,7 +62,7 @@ fn reverse_closed_interval(input: u64, min: u32, max: u32) -> u64 {
     //     000000000ABCDEF00000000000000000
     let input_to_reverse = input & ones_mask;
 
-    // Create a zeros mask for the [min_idx, max_idx] interval.
+    // Create a zeros mask for the [min, max] interval.
     //     11111111100000011111111111111111
     let zeros_mask = !ones_mask;
 
@@ -75,7 +74,7 @@ fn reverse_closed_interval(input: u64, min: u32, max: u32) -> u64 {
     //     .................abcdefghiABCDEF
     //     00000000000000000000000000ABCDEF
     //     ---------------->
-    //       min_idx = 17   ---------------
+    //         min = 17     ---------------
     //                      input_to_reverse
     let to_reverse = input_to_reverse >> min;
 
