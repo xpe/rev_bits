@@ -18,5 +18,5 @@ criterion = { version = "0.5.1", features = ["html_reports"] }
 quickcheck_macros = "1.0.0"
 
 [[bench]]
-name = "reverse"
+name = "rev_u32"
 harness = false
